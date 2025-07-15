@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span>Chat</span>
+
+  <div class="spacer"></div>
+@if(user$ | async; as user) {
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+    {{ user.firstName }} {{ user.lastName }}
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">Se déconnecter</button>
+  </mat-menu>
+}
+</mat-toolbar>
+
+<main>
+  <router-outlet />
+</main>

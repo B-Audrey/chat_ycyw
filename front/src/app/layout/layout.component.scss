@@ -1,0 +1,15 @@
+.links {
+  display: flex;
+  gap: 1em;
+}
+
+a {
+  &.active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+mat-toolbar {
+  margin-bottom: 1em;
+  justify-content: space-between;
+}
