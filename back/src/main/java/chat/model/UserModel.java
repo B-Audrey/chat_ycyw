@@ -2,9 +2,9 @@ package chat.model;
 
 import chat.enums.Role;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class UserModel {

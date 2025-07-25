@@ -38,7 +38,9 @@
     "@ngxs/devtools-plugin": "20.0.2",
     "@ngxs/store": "^20.0.2",
     "@ngxs/websocket-plugin": "20.0.2",
+    "@stomp/stompjs": "^7.1.1",
     "rxjs": "~7.8.0",
+    "sockjs-client": "^1.6.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

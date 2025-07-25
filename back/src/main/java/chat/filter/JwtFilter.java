@@ -1,7 +1,7 @@
 package chat.filter;
 
 import chat.config.CustomUserDetailsService;
-import chat.entity.UserEntity;
+import chat.entity.UsersEntity;
 import chat.model.error.UnauthorizedException;
 import chat.services.UserService;
 import chat.utils.JwtUtils;
@@ -60,7 +60,7 @@ public class JwtFilter extends OncePerRequestFilter {
                             userDetails.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-                    UserEntity connectedUser = userService.getUserByEmail(useremail);
+                    UsersEntity connectedUser = userService.getUserByEmail(useremail);
                     if (connectedUser == null) {
                         throw new UnauthorizedException("User not found");
                     }
@@ -77,8 +77,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        List<String> PUBLIC_PATHS = List.of("/api/users/new",
-                                            "/api/auth/login",
+        List<String> PUBLIC_PATHS = List.of("/api/auth/login",
                                             "/api/auth/refresh"
         );
         String path = request.getServletPath();

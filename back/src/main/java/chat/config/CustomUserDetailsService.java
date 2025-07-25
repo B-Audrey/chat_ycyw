@@ -1,6 +1,6 @@
 package chat.config;
 
-import chat.entity.UserEntity;
+import chat.entity.UsersEntity;
 import chat.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepositoryInstance.findByEmail(username);
+        UsersEntity user = userRepositoryInstance.findByEmail(username);
         if (user == null) {
             user = userRepositoryInstance.findByEmail(username);
         }

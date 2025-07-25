@@ -1,21 +1,19 @@
+<h2>Se connecter</h2>
 <form [formGroup]="loginForm" (ngSubmit)="login$(loginForm.getRawValue())">
-
-  <h2>Se connecter</h2>
   <div class="form-field">
-    <label for="username">E-mail ou nom d'utilisateur</label>
     <mat-form-field>
-      <input id="username" matInput formControlName="username" />
+      <mat-label>E-mail ou nom d'utilisateur</mat-label>
+      <input id="username" matInput formControlName="username"/>
     </mat-form-field>
   </div>
 
   <div class="form-field">
-    <label for="password">Mot de passe</label>
     <mat-form-field>
-      <input id="password" matInput formControlName="password" type="password" />
+      <mat-label>Mot de passe</mat-label>
+      <input id="password" matInput formControlName="password" type="password"/>
     </mat-form-field>
   </div>
-
-  <div>
+  <div class="form-field">
     <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Se connecter</button>
   </div>
 </form>

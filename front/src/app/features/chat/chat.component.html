@@ -1,1 +1,10 @@
-Chat WORKS
+@for (message of messages$ | async; track message) {
+  <div>
+    <strong>{{ message.from?.firstName }}:</strong> {{ message.content }}
+  </div>
+}
+
+<form (submit)="send()">
+  <input [(ngModel)]="newMessage" name="msg" />
+  <button type="submit">Envoyer</button>
+</form>

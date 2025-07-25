@@ -1,6 +1,6 @@
 package chat.utils.mappers;
 
-import chat.entity.UserEntity;
+import chat.entity.UsersEntity;
 import chat.model.UserModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserMapper {
-    public UserModel convertToUserModel(UserEntity user) {
+    public UserModel convertToUserModel(UsersEntity user) {
         return new UserModel(user.getUuid(),
                              user.getEmail(),
                              user.getFirstName(),

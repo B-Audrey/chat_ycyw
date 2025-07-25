@@ -1,9 +1,7 @@
 package chat.seed;
 
-import chat.entity.SeedEntity;
-import chat.entity.UserEntity;
+import chat.entity.UsersEntity;
 import chat.enums.Role;
-import chat.repository.SeedRepository;
 import chat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +14,6 @@ import java.util.List;
 
 @Component
 public class MainSeed implements CommandLineRunner {
-
-    @Autowired
-    private SeedRepository seedRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -46,21 +41,18 @@ public class MainSeed implements CommandLineRunner {
 
         if (initializationMode.equals("always") || initializationMode.equals("embedded")) {
             this.createUser();
-            // ...add more seeds here
-            // seeds are created with id to be created only once by a determined order
-            // think about increment ids correctly !!
         }
     }
 
 
     private void createUser() {
-        int userSeedId = 1;
-        if (!seedRepository.existsById(userSeedId)) {
-            UserEntity firstUser = new UserEntity();
+        if (userRepository.findByEmail(firstUserMail) == null &&
+                userRepository.findByEmail(secondUserMail) == null) {
+            UsersEntity firstUser = new UsersEntity();
             firstUser.setEmail(firstUserMail);
             firstUser.setFirstName("User");
             firstUser.setLastName("Client");
-            UserEntity secondUser = new UserEntity();
+            UsersEntity secondUser = new UsersEntity();
             secondUser.setEmail(secondUserMail);
             secondUser.setFirstName("User");
             secondUser.setLastName("Collaborator");
@@ -75,10 +67,6 @@ public class MainSeed implements CommandLineRunner {
             secondUser.setRoles(collabRoles);
             this.userRepository.save(firstUser);
             this.userRepository.save(secondUser);
-            SeedEntity seed = new SeedEntity();
-            seed.setId(userSeedId);
-            seed.setName("add fake user");
-            seedRepository.save(seed);
         }
     }
 

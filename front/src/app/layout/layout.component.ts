@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { Store } from '@ngxs/store';
-import { UserActions, UserState } from '../../shared';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {Store} from '@ngxs/store';
+import {UserActions, UserState} from '../../shared';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'chat-layout',
@@ -15,8 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     RouterOutlet,
     MatButtonModule,
-    RouterLink,
-    RouterLinkActive,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,

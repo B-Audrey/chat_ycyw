@@ -1,11 +1,28 @@
 export interface User {
-  uuid?: string;
+  uuid: string;
   email: string;
-  firstName: string;
-  lastName: string;
   password?: string;
-  role: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date | null;
+  lastName?: string;
+  firstName?: string;
+  adresse?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+  complementaryAdress?: string;
+  adressNumber?: string;
+  birthDate?: string; // ISO format
+  striped?: string;
+  lastConnectionAt?: string;
+
+  roles: Role[];
+
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string;
+}
+export enum Role {
+  ROLE_USER= 'ROLE_USER',
+  ROLE_COLLABORATOR = 'ROLE_COLLABORATOR',
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN',
 }

@@ -1,5 +1,6 @@
 package chat.entity;
 
+import chat.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,23 +9,19 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import chat.enums.Role;
 
 @Data
 @Entity
 @RequiredArgsConstructor
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class) // Pour les champs created_at et updated_at
-public class UserEntity implements UserDetails {
+public class UsersEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -33,49 +30,50 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
     @JsonIgnore
     @Column(nullable = false)
     private String password;
 
+    private String lastName;
+    private String firstName;
+    private String adresse;
+    private String city;
+    private String postalCode;
+    private String country;
+    private String complementaryAdress;
+    private String adressNumber;
+
+    private LocalDate birthDate;
+    private String striped;
+    private LocalDateTime lastConnectionAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private List<Role> roles;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
-
     @LastModifiedDate
     @Column()
     private LocalDateTime updatedAt;
-
     @Column()
     private LocalDateTime deletedAt;
-
-
     @PreRemove
     protected void onDelete() {
         deletedAt = LocalDateTime.now();
     }
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "uuid")
-    )
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private List<Role> roles;
+    @OneToMany(mappedBy = "user")
+    private List<RentalsEntity> rentals;
+
+    @OneToMany(mappedBy = "user")
+    private List<PaymentsEntity> payments;
 
 
-    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .toList();
+        return List.of();
     }
 
     @JsonIgnore

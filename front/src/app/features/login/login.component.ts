@@ -3,7 +3,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Store} from '@ngxs/store';
 import {Router} from '@angular/router';
 import {ToastService, UserActions} from '../../../shared';
-import {MatFormField} from '@angular/material/form-field';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -11,7 +11,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 @Component({
   selector: 'chat-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInput, MatFormField, MatButton],
+  imports: [ReactiveFormsModule, MatInput, MatFormField, MatButton, MatLabel],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

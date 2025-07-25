@@ -23,8 +23,6 @@ public class ChatApplication {
     public void logOnStartup() {
         logger.info("Let's go 🚀 ! Listening on port : {}", port);
     }
-
-
 }
 
 

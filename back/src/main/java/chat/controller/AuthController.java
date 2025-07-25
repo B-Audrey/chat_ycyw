@@ -1,7 +1,7 @@
 package chat.controller;
 
 import chat.dto.AuthLoginDto;
-import chat.entity.UserEntity;
+import chat.entity.UsersEntity;
 import chat.model.UserModel;
 import chat.model.error.ForbiddenException;
 import chat.model.error.NotFoundException;
@@ -48,7 +48,7 @@ public class AuthController {
     @GetMapping("/me")
     public ResponseEntity<?> returnMeInfos(HttpServletRequest request) {
         try {
-            UserEntity user = (UserEntity) request.getAttribute("user");
+            UsersEntity user = (UsersEntity) request.getAttribute("user");
             if (user != null) {
                 UserModel me = userMapper.convertToUserModel(user);
                 return ResponseEntity.ok(me);
@@ -81,7 +81,7 @@ public class AuthController {
             if (email == null) {
                 throw new UnauthorizedException("error");
             }
-            UserEntity user = userService.getUserByEmail(email);
+            UsersEntity user = userService.getUserByEmail(email);
             if (user == null) {
                 throw new UnauthorizedException("error");
             }
@@ -116,7 +116,7 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     authLoginDto.getUsername(),
                     authLoginDto.getPassword()));
-            UserEntity user = userService.findUserByMail(authLoginDto.getUsername());
+            UsersEntity user = userService.findUserByMail(authLoginDto.getUsername());
             if (user == null) {
                 throw new UnauthorizedException("error");
             }
