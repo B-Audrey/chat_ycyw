@@ -82,7 +82,7 @@ public class JwtFilter extends OncePerRequestFilter {
         List<String> PUBLIC_PATHS = List.of(
                 "/api/auth/login",
                 "/api/auth/refresh",
-                "/ws/**"
+                "/api/ws/**"
         );
         AntPathMatcher pathMatcher = new AntPathMatcher();
         return PUBLIC_PATHS.stream().anyMatch(publicPath -> pathMatcher.match(publicPath, path));

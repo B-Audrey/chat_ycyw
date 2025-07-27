@@ -1,15 +1,12 @@
 /* eslint-disable no-unused-vars */
 
-import { ChatMessage } from '../../interfaces/chatMessage';
+import { ChatMessage } from '../../interfaces';
 import { PageQueryParams, SortDirection } from '../../interfaces';
 
-export class OnMessage {
+export class OnMessageReceived {
   static readonly type = '[Chat] Act on Message';
 
-  constructor(
-    public type: string,
-    public payload: ChatMessage,
-  ) {}
+  constructor(public payload: ChatMessage) {}
 }
 
 export class SendChatMessage {

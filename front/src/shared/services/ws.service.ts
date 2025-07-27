@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import {ConnectWebSocket, DisconnectWebSocket} from '@ngxs/websocket-plugin';
-
+import { ConnectWebSocket } from '@ngxs/websocket-plugin';
 
 @Injectable({ providedIn: 'root' })
 export class WebSocketService {
@@ -15,7 +14,6 @@ export class WebSocketService {
     }
 
     const wsUrl = `ws://localhost:3000/ws?token=${token}`;
-    this.store.dispatch(new DisconnectWebSocket()); // Sécurité : on déconnecte proprement
     this.store.dispatch(new ConnectWebSocket({ url: wsUrl }));
   }
 }

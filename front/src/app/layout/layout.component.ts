@@ -14,6 +14,7 @@ import {
 } from '@angular/material/sidenav';
 import { ChatComponent } from '../features/chat/chat.component';
 import { WebSocketService } from '../../shared';
+import { ChatStompService } from '../../shared/services/chat.stomp.service';
 
 @Component({
   selector: 'chat-layout',
@@ -36,7 +37,7 @@ import { WebSocketService } from '../../shared';
 })
 export default class LayoutComponent {
   private readonly store = inject(Store);
-  private wsService = inject(WebSocketService);
+  private wsService = inject(ChatStompService);
 
   readonly user$ = this.store.select(UserState.getMe);
 
@@ -51,5 +52,10 @@ export default class LayoutComponent {
     //   sort: SortDirection.DESC
     // }));
     this.wsService.connect();
+  }
+
+  openChat(sidenav: MatSidenav) {
+    sidenav.toggle();
+    this.wsService.connect(); // idempotent grâce au guard dans le service
   }
 }

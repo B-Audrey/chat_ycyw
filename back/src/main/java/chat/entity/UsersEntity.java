@@ -68,6 +68,7 @@ public class UsersEntity implements UserDetails {
         deletedAt = LocalDateTime.now();
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<RentalsEntity> rentals;
 

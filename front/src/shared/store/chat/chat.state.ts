@@ -41,31 +41,37 @@ export class ChatState {
   }
 
   @Action(ChatActions.SendChatMessage)
-  sendMessage(ctx: StateContext<ChatStateModel>, event: ChatActions.SendChatMessage) {
+  sendMessage(
+    ctx: StateContext<ChatStateModel>,
+    event: ChatActions.SendChatMessage,
+  ) {
     console.log('Message a envoyer message dans le store:', event);
-    ctx.dispatch(new SendWebSocketMessage({
-      type: '/app/chat',
-      payload: event.payload
-    }));
+    ctx.dispatch(
+      new SendWebSocketMessage({
+        type: '/app/chat',
+        payload: event.payload,
+      }),
+    );
   }
 
-  @Action(ChatActions.OnMessage)
-  onMessage(ctx: StateContext<ChatStateModel>, event: ChatActions.OnMessage) {
+  @Action(ChatActions.OnMessageReceived)
+  onMessage(
+    ctx: StateContext<ChatStateModel>,
+    event: ChatActions.OnMessageReceived,
+  ) {
     console.log('Received message dans le store:', event);
-    if (event.type === '/collaborator/messages') {
-      console.log(
-        'Adding message to state for reading to customer:',
-        event.payload,
-      );
-      const messages = ctx.getState();
-      ctx.setState({
-        content: [...messages.content, event.payload],
-        pagination: {
-          ...messages.pagination,
-          total: messages.pagination.total + 1,
-        },
-      });
-    }
+    console.log(
+      'Adding message to state for reading to customer:',
+      event.payload,
+    );
+    const messages = ctx.getState();
+    ctx.setState({
+      content: [...messages.content, event.payload],
+      pagination: {
+        ...messages.pagination,
+        total: messages.pagination.total + 1,
+      },
+    });
   }
 
   @Action(ChatActions.LoadChatHistory)

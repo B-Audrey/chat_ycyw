@@ -1,6 +1,7 @@
 package chat.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -165,4 +166,19 @@ public class JwtUtils {
     private Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(getSignKey()).parseClaimsJws(token).getBody();
     }
+
+    /**
+     * Validate the token and extract the user email
+     * Throws JwtException if the token is invalid or expired
+     * @param token
+     * @return
+     */
+    public String validateAndExtractEmail(String token) {
+        String email = extractUserEmail(token);
+        if (email == null || isTokenExpired(token)) {
+            throw new JwtException("Token invalide ou expiré");
+        }
+        return email;
+    }
+
 }

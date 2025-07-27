@@ -30,7 +30,7 @@ public class SpringSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, UserService userService) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/api/ws/**").permitAll()
                         .requestMatchers("/api/auth/login",
                                          "/api/auth/refresh")
                         .permitAll()

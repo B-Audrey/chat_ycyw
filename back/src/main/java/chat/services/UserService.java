@@ -4,6 +4,7 @@ import chat.entity.UsersEntity;
 import chat.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -39,5 +40,4 @@ public class UserService {
             return userRepository.findByEmail(search);
         }
     }
-
 }

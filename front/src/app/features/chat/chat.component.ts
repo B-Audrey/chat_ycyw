@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { SendChatMessage } from '../../../shared/store/chat/chat.actions';
 import { map } from 'rxjs';
+import { ChatStompService } from '../../../shared/services/chat.stomp.service';
 
 @Component({
   selector: 'chat-content',
@@ -16,19 +17,23 @@ import { map } from 'rxjs';
 })
 export class ChatComponent {
   private store = inject(Store);
+  private wsService = inject(ChatStompService);
 
   messages$ = this.store
     .select(ChatState.messages)
     .pipe(map((message) => message.content));
+
   newMessage = '';
 
   send() {
-    const message: ChatMessage = {
+    if (!this.newMessage.trim()) {
+      return;
+    }
+    this.wsService.sendMessage({
       toUuid: 'uuid',
       content: this.newMessage,
       status: MessageStatus.SENT,
-    };
-    console.log('Sending message:', message);
+    });
     this.newMessage = '';
   }
 }

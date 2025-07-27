@@ -5,7 +5,7 @@ import LayoutComponent from './layout/layout.component';
 import { LoginComponent } from './features/login/login.component';
 import { ErrorComponent } from './features/error/error.component';
 import { ChatComponent } from './features/chat/chat.component';
-import { HomeComponent } from './features/app/home.component';
+import { HomeComponent } from './features/home/home.component';
 
 export const routes: Route[] = [
   {
