@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.util.List;
@@ -71,16 +72,19 @@ public class JwtFilter extends OncePerRequestFilter {
             }
             chain.doFilter(req, res);
         } catch (Exception e) {
-            throw new ServletException();
-        }
+            log.error("JWT Filter error", e);
+            throw new ServletException("JWT Filter failed", e);        }
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        List<String> PUBLIC_PATHS = List.of("/api/auth/login",
-                                            "/api/auth/refresh"
-        );
         String path = request.getServletPath();
-        return PUBLIC_PATHS.contains(path);
+        List<String> PUBLIC_PATHS = List.of(
+                "/api/auth/login",
+                "/api/auth/refresh",
+                "/ws/**"
+        );
+        AntPathMatcher pathMatcher = new AntPathMatcher();
+        return PUBLIC_PATHS.stream().anyMatch(publicPath -> pathMatcher.match(publicPath, path));
     }
 }

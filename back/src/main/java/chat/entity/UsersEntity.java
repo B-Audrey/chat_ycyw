@@ -42,9 +42,12 @@ public class UsersEntity implements UserDetails {
     private String country;
     private String complementaryAdress;
     private String adressNumber;
-
     private LocalDate birthDate;
+
+    @JsonIgnore
+    @Column()
     private String striped;
+
     private LocalDateTime lastConnectionAt;
 
     @Enumerated(EnumType.STRING)
@@ -59,6 +62,7 @@ public class UsersEntity implements UserDetails {
     private LocalDateTime updatedAt;
     @Column()
     private LocalDateTime deletedAt;
+
     @PreRemove
     protected void onDelete() {
         deletedAt = LocalDateTime.now();
@@ -67,6 +71,7 @@ public class UsersEntity implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<RentalsEntity> rentals;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<PaymentsEntity> payments;
 

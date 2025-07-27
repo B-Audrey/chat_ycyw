@@ -4,6 +4,5 @@ export * from './store/chat';
 
 export * from './services/auth.service';
 export * from './services/toast.service';
-
-
-
+export * from './services/ws.service';
+export * from './services/messages.service';

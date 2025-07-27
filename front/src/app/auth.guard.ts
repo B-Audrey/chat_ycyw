@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = () => {
         .pipe(map(() => store.selectSnapshot(UserState.getAccessToken)));
 
   return accessToken$.pipe(
-    switchMap(token => {
+    switchMap((token) => {
       if (token) {
         return store.dispatch(new UserActions.Me());
       } else {

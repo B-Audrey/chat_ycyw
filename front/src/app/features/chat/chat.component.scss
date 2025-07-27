@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 86px); // Adjust for toolbar height + margin
+  justify-content: flex-end;
+  padding: 1em;
+  box-sizing: border-box;
+}

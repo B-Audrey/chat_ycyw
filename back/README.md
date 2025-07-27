@@ -27,25 +27,25 @@ sdk env
 command to init a new db in docker :
 
 ``` bash
-docker run --name mdd -e POSTGRES_USER=pguser -e POSTGRES_PASSWORD=pgpass -e POSTGRES_DB=pgdb -p 5432:5432 -d postgres
+docker run --name chat -e POSTGRES_USER=pguser -e POSTGRES_PASSWORD=pgpass -e POSTGRES_DB=pgdb -p 5432:5432 -d postgres
 ```
 
 to start db :
 
 ``` bash
-docker start mdd
+docker start chat
 ```
 
 to stop db :
 
 ``` bash
-docker stop mdd
+docker stop chat
 ```
 
 to remove db :
 
 ``` bash
-docker rm mdd
+docker rm chat
 ```
 
 You dont need to populate DB as the app will sync the db with the entities at the start of the app by the synchonize

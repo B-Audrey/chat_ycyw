@@ -25,10 +25,16 @@ export class AuthService {
     return this.http.get('/api/auth/logout');
   }
 
-  login$(username: string, password: string): Observable<{ accessToken: string }> {
-    return this.httpWithoutInterceptor.post<{ accessToken: string }>('/api/auth/login', {
-      username,
-      password,
-    });
+  login$(
+    username: string,
+    password: string,
+  ): Observable<{ accessToken: string }> {
+    return this.httpWithoutInterceptor.post<{ accessToken: string }>(
+      '/api/auth/login',
+      {
+        username,
+        password,
+      },
+    );
   }
 }

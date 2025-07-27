@@ -1,12 +1,12 @@
-import {inject, Injectable} from '@angular/core';
-import {Action, Selector, State, StateContext} from '@ngxs/store';
+import { inject, Injectable } from '@angular/core';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import * as UserActions from './user.actions';
-import {catchError, tap} from 'rxjs/operators';
-import {Observable, switchMap} from 'rxjs';
-import {Router} from '@angular/router';
-import {User} from '../../interfaces';
-import {AuthService} from '../../services/auth.service';
-import {ToastService} from '../../services/toast.service';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from '../../interfaces';
+import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 export interface UserStateModel {
   user?: User;
@@ -33,10 +33,11 @@ export class UserState {
     return state?.user?.uuid ? state.user : undefined;
   }
 
-
   @Action(UserActions.Me)
   me$(ctx: StateContext<UserStateModel>): Observable<unknown> {
-    return this.#authService.getMe$().pipe(tap((user: User) => ctx.patchState({ user })));
+    return this.#authService
+      .getMe$()
+      .pipe(tap((user: User) => ctx.patchState({ user })));
   }
 
   @Action(UserActions.Refresh)
@@ -50,8 +51,11 @@ export class UserState {
   }
 
   @Action(UserActions.Login)
-  login$(ctx: StateContext<UserStateModel>, { username, password }: UserActions.Login) {
-    console.log('Login action triggered with:', username)
+  login$(
+    ctx: StateContext<UserStateModel>,
+    { username, password }: UserActions.Login,
+  ) {
+    console.log('Login action triggered with:', username);
     return this.#authService
       .login$(username, password)
       .pipe(tap(({ accessToken }) => ctx.patchState({ accessToken })));

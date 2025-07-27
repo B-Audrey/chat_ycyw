@@ -3,17 +3,24 @@
   <div class="form-field">
     <mat-form-field>
       <mat-label>E-mail ou nom d'utilisateur</mat-label>
-      <input id="username" matInput formControlName="username"/>
+      <input id="username" matInput formControlName="username" />
     </mat-form-field>
   </div>
 
   <div class="form-field">
     <mat-form-field>
       <mat-label>Mot de passe</mat-label>
-      <input id="password" matInput formControlName="password" type="password"/>
+      <input
+        id="password"
+        matInput
+        formControlName="password"
+        type="password"
+      />
     </mat-form-field>
   </div>
   <div class="form-field">
-    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Se connecter</button>
+    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+      Se connecter
+    </button>
   </div>
 </form>

@@ -1,18 +1,40 @@
-<mat-toolbar color="primary">
-  <span>Chat</span>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <!-- Toolbar -->
+    <mat-toolbar color="primary">
+      <span>Chat</span>
 
-  <div class="spacer"></div>
-@if(user$ | async; as user) {
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>account_circle</mat-icon>
-    {{ user.firstName }} {{ user.lastName }}
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="logout()">Se déconnecter</button>
-  </mat-menu>
-}
-</mat-toolbar>
+      <div class="spacer"></div>
 
-<main>
-  <router-outlet />
-</main>
+      <!-- Menu utilisateur -->
+      @if (user$ | async; as user) {
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+          {{ user.firstName }} {{ user.lastName }}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Se déconnecter</button>
+        </mat-menu>
+      }
+    </mat-toolbar>
+    <button
+      mat-icon-button
+      (click)="sidenav.toggle(); connectWS()"
+      aria-label="Toggle chat"
+      class="toggle-chat"
+      color="accent"
+    >
+      <mat-icon>chat</mat-icon>
+    </button>
+    <!-- Contenu principal -->
+    <main>
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+
+  <!-- Sidenav de chat à droite -->
+  <mat-sidenav #sidenav mode="over" position="end">
+    <mat-toolbar color="accent">Chat</mat-toolbar>
+    <chat-content />
+  </mat-sidenav>
+</mat-sidenav-container>

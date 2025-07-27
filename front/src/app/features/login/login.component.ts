@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Store} from '@ngxs/store';
-import {Router} from '@angular/router';
-import {ToastService, UserActions} from '../../../shared';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {HttpErrorResponse} from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { Router } from '@angular/router';
+import { ToastService, UserActions } from '../../../shared';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'chat-login',
@@ -29,15 +29,21 @@ export class LoginComponent {
 
   login$({ username, password }: { username: string; password: string }) {
     if (this.loginForm.valid) {
-      this.#store.dispatch(new UserActions.Login(username, password)).subscribe({
-        next: () => this.#router.navigate(['/']),
-        error: (e: HttpErrorResponse) => {
-          if (e.status === 500) {
-            return this.#toastService.error('Erreur 500, le service ne répond pas');
-          }
-          this.#toastService.error('Connexion refusée, veuillez vérifier vos identifiants.');
-        },
-      });
+      this.#store
+        .dispatch(new UserActions.Login(username, password))
+        .subscribe({
+          next: () => this.#router.navigate(['/']),
+          error: (e: HttpErrorResponse) => {
+            if (e.status === 500) {
+              return this.#toastService.error(
+                'Erreur 500, le service ne répond pas',
+              );
+            }
+            this.#toastService.error(
+              'Connexion refusée, veuillez vérifier vos identifiants.',
+            );
+          },
+        });
     }
   }
 }

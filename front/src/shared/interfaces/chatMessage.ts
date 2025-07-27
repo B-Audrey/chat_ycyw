@@ -1,9 +1,9 @@
-import {User} from './user';
+import { User } from './user';
 
 export interface ChatMessage {
   uuid?: string;
   from?: User;
-  to?: User;
+  toUuid: string;
   content: string;
   status: MessageStatus;
   createdAt?: string;

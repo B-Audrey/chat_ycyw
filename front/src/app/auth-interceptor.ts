@@ -22,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (
   const toastService = inject(ToastService);
 
   return next(_addBearer(req)) //
-    .pipe(catchError(err => _errorHandler(err, req, next)));
+    .pipe(catchError((err) => _errorHandler(err, req, next)));
 
   function _addBearer(req: HttpRequest<unknown>): HttpRequest<unknown> {
     const token = store.selectSnapshot(UserState.getAccessToken);
@@ -56,7 +56,7 @@ export const authInterceptor: HttpInterceptorFn = (
     return store.dispatch(new UserActions.Refresh()).pipe(
       first(),
       switchMap(() => next(_addBearer(request))),
-      catchError(err => {
+      catchError((err) => {
         const error = err as HttpErrorResponse;
         if (error.status === HttpStatusCode.Unauthorized) {
           router.navigate(['/login']);
