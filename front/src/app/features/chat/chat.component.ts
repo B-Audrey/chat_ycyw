@@ -30,8 +30,7 @@ export class ChatComponent {
       return;
     }
     this.wsService.sendMessage({
-      toUuid: 'uuid',
-      content: this.newMessage,
+      body: this.newMessage,
       status: MessageStatus.SENT,
     });
     this.newMessage = '';

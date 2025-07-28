@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatMessage {
-    private String toUuid;
-    private String content;
+    private String fromUuid;
+    private String body;
     private String status;
 
 }

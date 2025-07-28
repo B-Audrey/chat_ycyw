@@ -116,8 +116,8 @@ create table if not exists vehicles
     description            varchar(255),
     image_url              varchar(255),
     label                  varchar(255) not null,
+    license_plate          varchar(255),
     model_ref              varchar(255),
-    number_plate           varchar(255),
     seats                  integer      not null,
     status                 varchar(255) not null
         constraint vehicles_status_check
@@ -136,36 +136,36 @@ alter table vehicles
 
 create table if not exists rentals
 (
-    uuid                   varchar(255) not null
+    uuid                             varchar(255) not null
         primary key,
-    arrival_time           timestamp(6),
-    departure_time         timestamp(6),
-    price                  real         not null,
-    status                 varchar(255)
+    arrival_time                     timestamp(6),
+    departure_time                   timestamp(6),
+    price                            real         not null,
+    status                           varchar(255)
         constraint rentals_status_check
             check ((status)::text = ANY
                    ((ARRAY ['ACCEPTED'::character varying, 'REFUSED'::character varying, 'PENDING'::character varying, 'CANCELLED'::character varying])::text[])),
-    arrival_agency_uuid    varchar(255) not null
+    arrival_agency_uuid              varchar(255) not null
         constraint fk3xtaorjfbp0wf0p1o1tn3ycko
             references agencies,
-    chosen_vehicule_uuid   varchar(255)
-        constraint fkpk1hddiu07wxc28fs157yohxy
+    assinged_vehicule_uuid           varchar(255)
+        constraint fk1iitogvt7pgqmk7yk9tuna9n9
             references vehicles,
-    departure_agency_uuid  varchar(255) not null
+    departure_agency_uuid            varchar(255) not null
         constraint fk5nqwwys9lpkhux54jnevog4xx
             references agencies,
-    payment_uuid           varchar(255)
+    payment_uuid                     varchar(255)
         constraint fkcjnl1v87y6q6ljoj4nb7rkttx
             references payments,
-    user_uuid              varchar(255) not null
+    requested_vehicule_category_uuid varchar(255)
+        constraint fkqk2o9olfo2s0630u5ib0w88u7
+            references vehicle_categories,
+    user_uuid                        varchar(255) not null
         constraint fk8nery4ducdonxe0uuttm1nota
             references users,
-    vehicule_uuid          varchar(255) not null
+    vehicule_uuid                    varchar(255) not null
         constraint fko48wmhg3xtob836ud0j43fci0
-            references vehicles,
-    vehicule_category_uuid varchar(255)
-        constraint fks5wq45ufbi6h8ybhga1uckwqr
-            references vehicle_categories
+            references vehicles
 );
 
 alter table rentals

@@ -13,7 +13,6 @@ import {
   MatSidenavContent,
 } from '@angular/material/sidenav';
 import { ChatComponent } from '../features/chat/chat.component';
-import { WebSocketService } from '../../shared';
 import { ChatStompService } from '../../shared/services/chat.stomp.service';
 
 @Component({

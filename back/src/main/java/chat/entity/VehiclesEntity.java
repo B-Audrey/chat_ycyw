@@ -24,7 +24,7 @@ public class VehiclesEntity {
 
     private String brand;
     private String modelRef;
-    private String numberPlate;
+    private String licensePlate;
     private String color;
     private String description;
     private int seats;

@@ -39,14 +39,17 @@ public class RentalsEntity {
     private LocalDateTime arrivalTime;
 
     @ManyToOne
-    @JoinColumn(name = "vehicule_category_uuid")
-    private VehicleCategoriesEntity vehiculeCategory;
+    @JoinColumn(name = "requested_vehicule_category_uuid")
+    private VehicleCategoriesEntity requestedVehiculeCategory;
 
     @ManyToOne
-    @JoinColumn(name = "chosen_vehicule_uuid")
-    private VehiclesEntity chosenVehiculeUuid;
+    @JoinColumn(name = "assinged_vehicule_uuid")
+    private VehiclesEntity assingedVehiculeUuid;
 
     private float price;
+
+    private String contractReference;
+    private String contractUrl;
 
     @ManyToOne
     @JoinColumn(name = "payment_uuid")

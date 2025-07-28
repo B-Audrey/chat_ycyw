@@ -29,7 +29,7 @@ public class MessagesEntity {
     private UsersEntity to;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
+    private String body;
 
     @Enumerated(EnumType.STRING)
     private MessageStatus status;
