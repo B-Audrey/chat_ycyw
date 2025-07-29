@@ -41,7 +41,7 @@ public class StompAuthChannelConfig implements WebSocketMessageBrokerConfigurer 
                     if (token == null) {                               // header en minuscule ?
                         token = sha.getFirstNativeHeader("authorization");
                     }
-                    if (token == null && sha.getSessionAttributes()!=null) { // fallback query‑param
+                    if (token == null && sha.getSessionAttributes()!=null) {
                         token = (String) sha.getSessionAttributes().get("token");
                     }
                     if (token != null && token.startsWith("Bearer ")) {
@@ -63,7 +63,7 @@ public class StompAuthChannelConfig implements WebSocketMessageBrokerConfigurer 
                         sha.setLeaveMutable(true);
                     }
                     else {
-                        return null; // ferme la connexion (code 1008 Policy Violation)
+                        return null; // ferme la connexion
                     }
                 }
 

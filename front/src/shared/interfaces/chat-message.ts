@@ -1,10 +1,9 @@
-import { User } from './user';
-
 export interface ChatMessage {
   uuid?: string;
-  from?: User;
-  toUuid: string;
-  content: string;
+  fromUuid?: string;
+  fromLastName?: string;
+  fromFirstName?: string;
+  body: string;
   status: MessageStatus;
   createdAt?: string;
   updatedAt?: string;

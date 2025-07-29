@@ -46,7 +46,7 @@ public class UsersEntity implements UserDetails {
 
     @JsonIgnore
     @Column()
-    private String striped;
+    private String stripeId;
 
     private LocalDateTime lastConnectionAt;
 
@@ -68,13 +68,7 @@ public class UsersEntity implements UserDetails {
         deletedAt = LocalDateTime.now();
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<RentalsEntity> rentals;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<PaymentsEntity> payments;
+    private String langue;
 
 
     @Override

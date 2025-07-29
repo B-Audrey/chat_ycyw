@@ -40,4 +40,15 @@ public class UserService {
             return userRepository.findByEmail(search);
         }
     }
+
+    /**
+     * Get user by uuid
+     *
+     * @param uuid the uuid of the user
+     * @return the user
+     */
+    public UsersEntity findUserByUuid(String uuid) throws Exception {
+        return Optional.ofNullable(userRepository.findByUuid(uuid))
+                .orElseThrow(() -> new Exception("User not found"));
+    }
 }

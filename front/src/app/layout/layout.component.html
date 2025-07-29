@@ -1,20 +1,21 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content>
-    <!-- Toolbar -->
     <mat-toolbar color="primary">
-      <span>Chat</span>
+      <span>LOGO</span>
 
       <div class="spacer"></div>
 
-      <!-- Menu utilisateur -->
       @if (user$ | async; as user) {
-        <button mat-button [matMenuTriggerFor]="menu">
-          <mat-icon>account_circle</mat-icon>
-          {{ user.firstName }} {{ user.lastName }}
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">Se déconnecter</button>
-        </mat-menu>
+        <div class="action">
+
+          <button mat-button>
+            <mat-icon>account_circle</mat-icon>
+            {{ user.firstName }} {{ user.lastName }}
+          </button>
+          <button mat-icon-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
       }
     </mat-toolbar>
     <button
@@ -26,15 +27,13 @@
     >
       <mat-icon>chat</mat-icon>
     </button>
-    <!-- Contenu principal -->
     <main>
-      <router-outlet />
+      <router-outlet/>
     </main>
   </mat-sidenav-content>
 
-  <!-- Sidenav de chat à droite -->
   <mat-sidenav #sidenav mode="over" position="end">
     <mat-toolbar color="accent">Chat</mat-toolbar>
-    <chat-content />
+    <chat-content/>
   </mat-sidenav>
 </mat-sidenav-container>

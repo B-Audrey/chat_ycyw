@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChatMessage {
     private String fromUuid;
+    private String fromLastName;
+    private String fromFirstName;
     private String body;
     private String status;
 

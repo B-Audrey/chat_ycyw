@@ -13,7 +13,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
-        // WebSocket natif → AUCUN interceptor
         registry.addEndpoint("/api/ws")
                 .setAllowedOriginPatterns("http://localhost:4200");
 

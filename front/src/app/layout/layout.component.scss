@@ -19,3 +19,11 @@ mat-toolbar {
   right: 20px;
   bottom: 20px;
 }
+.action {
+  display: flex;
+  align-items: center;
+
+  .mat-icon {
+    color: white;
+  }
+}

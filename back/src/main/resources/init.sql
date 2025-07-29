@@ -35,12 +35,13 @@ create table if not exists users
         constraint uk_6dotkott2kjsp8vw4d0m25fb7
             unique,
     first_name           varchar(255),
+    langue               varchar(255),
     last_connection_at   timestamp(6),
     last_name            varchar(255),
     password             varchar(255)   not null,
     postal_code          varchar(255),
     roles                varchar(255)[] not null,
-    striped              varchar(255),
+    stripe_id            varchar(255),
     updated_at           timestamp(6)
 );
 
@@ -51,7 +52,7 @@ create table if not exists messages
 (
     uuid       varchar(255) not null
         primary key,
-    content    text         not null,
+    body       text         not null,
     created_at timestamp(6),
     deleted_at timestamp(6),
     status     varchar(255)
@@ -83,7 +84,7 @@ create table if not exists payments
         constraint payments_status_check
             check ((status)::text = ANY
                    ((ARRAY ['SUCCEED'::character varying, 'FAILED'::character varying, 'ERROR'::character varying])::text[])),
-    stripe_id   varchar(255),
+    stripe_ref  varchar(255),
     updated_at  timestamp(6),
     agency_uuid varchar(255)
         constraint fklcwc928fnm32gjyiyb87ev22l
@@ -139,6 +140,8 @@ create table if not exists rentals
     uuid                             varchar(255) not null
         primary key,
     arrival_time                     timestamp(6),
+    contract_reference               varchar(255),
+    contract_url                     varchar(255),
     departure_time                   timestamp(6),
     price                            real         not null,
     status                           varchar(255)

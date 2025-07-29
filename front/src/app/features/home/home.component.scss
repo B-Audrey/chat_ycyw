@@ -1,3 +1,6 @@
 div {
   min-height: calc(100vh - 86px); // Adjust for toolbar height + margin
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

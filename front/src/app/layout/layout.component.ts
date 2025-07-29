@@ -44,15 +44,6 @@ export default class LayoutComponent {
     this.store.dispatch(new UserActions.Logout());
   }
 
-  connectWS() {
-    // this.store.dispatch(new LoadChatHistory({
-    //   page: 0,
-    //   size: 20,
-    //   sort: SortDirection.DESC
-    // }));
-    this.wsService.connect();
-  }
-
   openChat(sidenav: MatSidenav) {
     sidenav.toggle();
     this.wsService.connect(); // idempotent grâce au guard dans le service

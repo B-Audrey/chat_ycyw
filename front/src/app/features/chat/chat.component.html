@@ -1,13 +1,18 @@
 <div class="container">
   @for (message of messages$ | async; track message) {
     <div class="message">
-      <strong>{{ message.from?.firstName }}:</strong> {{ message.content }}
+      <strong>{{ message.fromLastName }} {{ message.fromFirstName }} : <br>
+      </strong> {{ message.body }}
     </div>
   }
   <div class="bottom-input">
     <form (submit)="send()">
-      <input [(ngModel)]="newMessage" name="msg" />
-      <button type="submit">Envoyer</button>
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="newMessage" name="msg"></textarea>
+      </mat-form-field>
+      <button mat-icon-button type="submit" color="accent">
+        <mat-icon>send</mat-icon>
+      </button>
     </form>
   </div>
 </div>
