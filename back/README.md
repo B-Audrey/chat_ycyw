@@ -69,8 +69,10 @@ mvn spring-boot:run
 You will find a chat.seed package with a MainSeed class that will populate the database with some data.
 This will be automatically run at the start of the application if the initialisationMode is set to "always" od "embedded" in the application.properties file.
 **This chat.seed is for development purpose only and should not be used in production.**
-It will create users, topics, posts, comments, and you can add others as features will be added.
-Think about increment chat.seed ids.
+It will create users, to test features of the application, and a chat with some messages.
+Users are created with the following credentials :
+email : user@dev.fr / collab@dev.fr
+password : password
 
 ## Security
 Spring Security is used to secure the application.
